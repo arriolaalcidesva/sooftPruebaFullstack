@@ -1,8 +1,8 @@
+const config = require('../config').config;
 const mongoose = require('mongoose');
+mongoose.set('strictQuery', false);
 
-const uri = `mongodb+srv://alcidesarriola:m1c43lA0@cluster0.exlwywo.mongodb.net/feriados`;
-/* const dbName = 'feriados';
-const collectionName = 'feriados-2023'; */
+const uri = config.mongodb_host+config.mongodb_db;
 
 const client = mongoose.connect(uri,{
     useNewUrlParser: true,

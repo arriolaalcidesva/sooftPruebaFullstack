@@ -1,5 +1,5 @@
 /backend/node_modules
 /frontend/frontreact/node_modules
 /frontend/frontreact/package-lock.json
-.env
+/backend/.env
 node_modules
