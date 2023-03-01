@@ -10,7 +10,7 @@ const client = mongoose.connect(uri,{
 }).then(() =>{
     console.log("Successfully conected to the DATABASE.");
 }).catch(error =>{
-    console.log("Could not connect to DATABASE....", error);
+    console.log("Could not connect to DATABASE....", error?.message);
     process.exit();
 })
 ;

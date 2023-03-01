@@ -1,9 +1,9 @@
 const feriadoService = require("../service/feriadoService");
 
-const getAllFeriados = (req, res) =>{
+const getAllFeriados = async (req, res) =>{
 	try{
-		const allFeriados =  feriadoService.getAllFeriados();
-        console.log(allFeriados);
+		const allFeriados =  await feriadoService.getAllFeriados();
+        
 		res.send({status:"OK", data:allFeriados});
 	}catch (error) {
 		res

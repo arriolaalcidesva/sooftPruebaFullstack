@@ -9,7 +9,7 @@ const db = require('../src/bd');
 const fetchFeriados = async (year)=>{
 
     const url = `${FERIADOS_API}feriados/${year}`;
-    console.log('url: ',url);
+    
     const response = await fetch(url);
 
     return await response.json();
@@ -19,31 +19,17 @@ const fetchFeriados = async (year)=>{
 const parseFeriados = (feriados, year)=>{
     const currentDate = new Date().getTime();
 
-    const MyObject = {
-        motivo: '',
-        tipo: '',
-        info: '',
-        dia: 0,
-        mes: 0,
-        id: '',
-        anio: 0,
-        dateImported:''
-    };
-
-        const parsedFeriados = feriados.map(feriado => {
-            
-            MyObject.motivo = feriado.motivo;
-            MyObject.tipo = feriado.tipo;
-            MyObject.info = feriado.info;
-            MyObject.dia = feriado.dia;
-            MyObject.mes = feriado.mes;
-            MyObject.id = feriado.id;
-            MyObject.anio = year;
-            MyObject.dateImported = currentDate;
-
-            return MyObject;
-        })
-
+        const parsedFeriados = feriados.map(feriado => ({
+            motivo : feriado.motivo,
+            tipo : feriado.tipo,
+            info : feriado.info,
+            dia : feriado.dia,
+            mes : feriado.mes,
+            id : feriado.id,
+            anio : year,
+            dateImported : currentDate
+        }))
+        //console.log('parsedFeriados: ', parsedFeriados)
     return parsedFeriados;
 }
 

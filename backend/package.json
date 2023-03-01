@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "seed-db": "node src/initial-load-feriado.js"
+    "initial-load": "node src/initial-load-feriado.js",
+    "start": "node src/app.js"
   },
   "keywords": [],
   "author": "",
