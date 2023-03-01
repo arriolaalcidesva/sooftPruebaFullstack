@@ -2,3 +2,4 @@
 /frontend/frontreact/node_modules
 /frontend/frontreact/package-lock.json
 .env
+node_modules
