@@ -15,17 +15,20 @@ const fetchFeriados = async (year)=>{
     return await response.json();
 }
 
+const capitalizeWords = (str) => {
+    return str
+      .toLowerCase()
+      .split(' ')
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(' ');
+  }
+
 // Parse the feriados format in the db format
 const parseFeriados = (feriados, year)=>{
     const currentDate = new Date().getTime();
 
         const parsedFeriados = feriados.map(feriado => ({
-            motivo : feriado.motivo,
-            tipo : feriado.tipo,
-            info : feriado.info,
-            dia : feriado.dia,
-            mes : feriado.mes,
-            id : feriado.id,
+            ...feriado,
             anio : year,
             dateImported : currentDate
         }))
@@ -39,10 +42,15 @@ const saveFeriados = (feriados)=>{
     try {
         const proms = feriados.map(f=>{
             
-            const feriadoDoc = new feriadoSchema(f);
-            feriadoDoc.save();
+            const filter = { dia: f.dia, mes:f.mes,anio:f.anio };
+            const updateFields = f;
+
+            feriadoSchema.findOneAndUpdate(filter, updateFields, {upsert: true}, function(err, doc) {
+                if (err) console.log(err);
+                console.log(`${f.motivo} => succesfully saved.`);
+            });
         });
-    
+        
         return Promise.allSettled(proms);
     } catch (error) {
         console.log(error?.message)
@@ -57,9 +65,7 @@ const run = async (year=YEAR)=>{
         
         const parsed = parseFeriados(feriados, year);
         
-        await saveFeriados(parsed); 
-        console.log("Feriados guardados exitosamente.");
-        
+        await saveFeriados(parsed);         
     }catch(err){
         console.log("Error de ejecución.");
         console.log(err?.message)

@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import ModalComponent from './ModalComponent';
+import CapitalizeWords from '../utils/capitalizeWords'
 
 const FeriadoComponent = () => {
   //setear los hooks useState
@@ -51,12 +52,14 @@ const FeriadoComponent = () => {
             <tbody className='text-center'>
                 { users.map( (user,index) => (
                     <tr key={index}>
-                        <td>{user.tipo}</td>
+                        <td>{CapitalizeWords(user.tipo)}</td>
                         <td>{user.motivo}</td>
-                        <td onClick={() =>{
-                                                handleShow();
-                                                setDayOff(user);
-                            }}>Ver</td>
+                        <td><Button variant="primary" 
+                                    onClick={() =>{
+                                        handleShow();
+                                        setDayOff(user);
+                          }}>Ver</Button>
+                        </td>
                     </tr>                    
                 ))}
             </tbody>
