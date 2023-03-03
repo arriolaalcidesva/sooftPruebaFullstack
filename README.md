@@ -15,15 +15,15 @@ Instalar un servicio de MongoDB, ejemplo [Mongo Compass](https://www.mongodb.com
 - Se utiliza variables de entorno para facilitar el uso de valores en los ambientes
 - En el archivo .env, utilizar un puerto distinto a 3000
 
-
-**-** Abrir una terminal (GitBash, PowerShell, etc).
-**-** Clonar el proyecto
-**-** Ubicarse en /sooftPruebaFullstack/Backend
-**-** Ejecutar: npm install
-**-** Ejecutar: npm initial-load
-**-** Cerrar proceso: [Ctrl]+[C]
-**-** Ejecutar: npm start
-**-** Se verá un mensaje:
+**Pasos para ejecutar:**
+- Abrir una terminal (GitBash, PowerShell, etc).
+- Clonar el proyecto
+- Ubicarse en /sooftPruebaFullstack/Backend
+- Ejecutar: npm install
+- Ejecutar: npm initial-load
+- Cerrar proceso: [Ctrl]+[C]
+- Ejecutar: npm start
+- Se verá un mensaje:
 ```js
 Service listened at 3004
 Successfully conected to the DATABASE.
@@ -34,8 +34,10 @@ Successfully conected to the DATABASE.
 - Se utiliza la librería bootstrap para la vista 
 - Se utiliza variables de entorno para facilitar el uso de valores en los ambientes
 
-**-** Abrir una segunda terminal (GitBash, PowerShell, etc).
-**-** Ubicarse en /sooftPruebaFullstack/frontend/frontreact
-**-** Ejecutar: npm install
-**-** Ejecutar: npm start
+**Pasos para ejecutar:**
+- Levantar primero el servicio backend
+- Abrir una segunda terminal (GitBash, PowerShell, etc).
+- Ubicarse en /sooftPruebaFullstack/frontend/frontreact
+- Ejecutar: npm install
+- Ejecutar: npm start
 
