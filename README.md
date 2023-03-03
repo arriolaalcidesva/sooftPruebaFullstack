@@ -66,5 +66,5 @@ Successfully conected to the DATABASE.
 - Ejecutar: npm install
 - Ejecutar: npm start
 - La ventana se vería:
-<img src="https://github.com/arriolaalcidesva/sooftPruebaFullstack/blob/main/frontend/frontreact/public/Listado_feriados.png" width="125px" align="right" />
+<img src="https://github.com/arriolaalcidesva/sooftPruebaFullstack/blob/main/frontend/frontreact/public/Listado_feriados.png" width="400px" align="left" />
 
