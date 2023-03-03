@@ -6,7 +6,7 @@ import CapitalizeWords from '../utils/capitalizeWords'
 
 const FeriadoComponent = () => {
   //setear los hooks useState
-  const [ users, setUsers ] = useState([])
+  const [ feriados, setFeriados ] = useState([])
 
   const [show, setShow] = useState(false);
   const [dayOff, setDayOff] = useState({
@@ -17,7 +17,7 @@ const FeriadoComponent = () => {
                                         "mes": 0,
                                         "id":"",
                                         "anio":0,
-                                        "dateImported":""});
+                                        "dateImported":""}); 
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -25,19 +25,18 @@ const FeriadoComponent = () => {
   const year = new Date().getFullYear();
 
   //función para traer los datos de la API
-    const URL = 'http://localhost:3002/api/v2/feriados/'
+    const URL = process.env.REACT_APP_ENDPOINT_BASE+'feriados/';
 
   const showData = async () => {
     const response = await fetch(URL)
     const data = await response.json()
-    //console.log(data)
-    setUsers(data.data)
+    setFeriados(data.data)
   }
   
    useEffect( ()=> {
     showData()
-  }, [])
-  
+  }, [])// eslint-disable-line react-hooks/exhaustive-deps
+
   return (
     <div>
         <h3 className='text-center'>{year}</h3>
@@ -50,9 +49,9 @@ const FeriadoComponent = () => {
                 </tr>
             </thead>
             <tbody className='text-center'>
-                { users.map( (user,index) => (
+                {feriados?feriados.map( (user,index) => (
                     <tr key={index}>
-                        <td>{CapitalizeWords(user.tipo)}</td>
+                        <td>{CapitalizeWords(user?.tipo)}</td>
                         <td>{user.motivo}</td>
                         <td><Button variant="primary" 
                                     onClick={() =>{
@@ -61,7 +60,7 @@ const FeriadoComponent = () => {
                           }}>Ver</Button>
                         </td>
                     </tr>                    
-                ))}
+                )):'Cargando...'}
             </tbody>
         </table>
         {ModalComponent(Modal, Button, show,handleClose,handleShow,dayOff)}
